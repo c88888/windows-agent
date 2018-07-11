@@ -66,7 +66,7 @@ func collect(sec int64, fns []func() []*model.MetricValue) {
 		for j := 0; j < len(mvs); j++ {
 			mvs[j].Step = sec
 			mvs[j].Endpoint = hostname
-			mvs[j].Timestamp = now
+			mvs[j].Timestamp = time.Now().In(time.Local).Unix()
 		}
 
 		g.SendToTransfer(mvs)
